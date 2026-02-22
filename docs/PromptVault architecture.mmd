@@ -1,0 +1,14 @@
+C4Context
+    title Diagram kontenerów (C4) - PromptVault
+    Person(user, "Użytkownik", "Zarządza promptami AI i załącznikami")
+    Enterprise_Boundary(c1, "System PromptVault") {
+        Container(web_app, "Frontend (React 19)", "Vite, HTTPS", "Interfejs użytkownika (SPA)")
+        Container(api, "Backend (API)", "Python (Django DRF)", "Logika biznesowa, REST API, JWT")
+        ContainerDb(db, "Baza danych (SQL)", "Azure Database for PostgreSQL", "Przechowuje dane o promptach")
+    }
+    System_Ext(blob, "Magazyn plików", "Azure Blob Storage", "Przechowuje obrazki generowane przez AI")
+
+    Rel(user, web_app, "Korzysta z", "HTTPS")
+    Rel(web_app, api, "Wysyła zapytania", "JSON/HTTPS")
+    Rel(api, db, "Odczytuje/Zapisuje", "TCP / Port 5432")
+    Rel(api, blob, "Zapisuje/Pobiera", "HTTPS / Port 443")
