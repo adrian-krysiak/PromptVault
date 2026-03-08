@@ -1,13 +1,16 @@
-FROM node:24-alpine
+FROM node:24-alpine AS build
 
 WORKDIR /app
 
-# COPY package*.json .
+COPY package*.json .
 
-# RUN npm install
+RUN npm install
 
-# COPY . .
+COPY . .
 
-EXPOSE 5173
+RUN npm run build
 
-CMD ["sh", "-c", "echo 'Frontend service is ready...' && sleep infinity"]
+FROM nginx:alpine
+COPY --from=build /app/dist /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]

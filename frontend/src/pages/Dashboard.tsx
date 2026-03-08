@@ -1,0 +1,30 @@
+import { useEffect, useState } from 'react';
+import api from '../services/api';
+
+interface Item {
+    id: number;
+    name: string;
+}
+
+const Dashboard = () => {
+    const [items, setItems] = useState<Item[]>([]);
+    const [error, setError] = useState('');
+
+    useEffect(() => {
+        api.get<Item[]>('/items')
+            .then((res) => setItems(res.data))
+            .catch(() => setError('Frontend połączony, ale Backend jeszcze nie odpowiada – to normalne!'));
+    }, []);
+
+    return (
+        <div style={{ padding: '20px', textAlign: 'center' }}>
+            <h1>☁️ PromptVault Dashboard</h1>
+            {error && <p style={{ color: 'orange', fontWeight: 'bold' }}>{error}</p>}
+            <ul>
+                {items.map((item) => <li key={item.id}>{item.name}</li>)}
+            </ul>
+        </div>
+    );
+};
+
+export default Dashboard;

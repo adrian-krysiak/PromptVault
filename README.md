@@ -17,5 +17,7 @@ Ten projekt został zaplanowany z myślą o usługach PaaS (Platform as a Servic
 
 * [x] **Artefakt 1:** Zaplanowano strukturę folderów i diagram C4 (dostępny w `/docs`).
 * [X] **Artefakt 2:** Środowisko wielokontenerowe uruchomione lokalnie (Docker Compose).
+* [] **Artefakt 3:** Frontend
+* [] **Artefakt 4:** Backend
 
 > **Informacja:** Ten plik będzie ewoluował. W kolejnych etapach dodam tutaj sekcje 'Quick Start', opis zmiennych środowiskowych oraz instrukcję wdrożenia (CI/CD).
