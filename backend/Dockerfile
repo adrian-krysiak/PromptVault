@@ -10,4 +10,7 @@ RUN pip install -r ./requirements.txt
 
 COPY . .
 
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8081"]
+RUN python manage.py collectstatic --noinput || true
+
+CMD python manage.py migrate && \
+    gunicorn config.wsgi:application --bind 0.0.0.0:8081 --workers 2 --timeout 120 --access-logfile - --error-logfile -
