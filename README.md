@@ -21,3 +21,42 @@ Ten projekt został zaplanowany z myślą o usługach PaaS (Platform as a Servic
 * [] **Artefakt 4:** Backend
 
 > **Informacja:** Ten plik będzie ewoluował. W kolejnych etapach dodam tutaj sekcje 'Quick Start', opis zmiennych środowiskowych oraz instrukcję wdrożenia (CI/CD).
+
+## Quick Start (Docker Compose)
+
+Uruchamiaj polecenia z katalogu glownego projektu (`PromptVault/`).
+
+1. Start kontenerow:
+
+```bash
+make up
+```
+
+2. Migracje Django:
+
+```bash
+make init
+```
+
+3. Utworzenie konta admina:
+
+```bash
+make admin
+```
+
+4. Adresy w przegladarce:
+
+```text
+Frontend: http://localhost:8080
+Backend API: http://localhost:8081/api/prompts/
+Panel admina: http://localhost:8081/admin/
+```
+
+Dodatkowe skroty:
+
+```bash
+make logs   # podglad logow
+make down   # zatrzymanie kontenerow
+make urls   # wyswietlenie adresow
+make reset  # restart + migracje od zera (usuwa wolumen bazy)
+```

@@ -1,17 +1,18 @@
 import { useEffect, useState } from 'react';
 import api from '../services/api';
 
-interface Item {
+interface Prompt {
     id: number;
-    name: string;
+    title: string;
+    content: string;
 }
 
 const Dashboard = () => {
-    const [items, setItems] = useState<Item[]>([]);
+    const [items, setItems] = useState<Prompt[]>([]);
     const [error, setError] = useState('');
 
     useEffect(() => {
-        api.get<Item[]>('/items')
+        api.get<Prompt[]>('/api/prompts/')
             .then((res) => setItems(res.data))
             .catch(() => setError('Frontend połączony, ale Backend jeszcze nie odpowiada – to normalne!'));
     }, []);
@@ -21,7 +22,7 @@ const Dashboard = () => {
             <h1>☁️ PromptVault Dashboard</h1>
             {error && <p style={{ color: 'orange', fontWeight: 'bold' }}>{error}</p>}
             <ul>
-                {items.map((item) => <li key={item.id}>{item.name}</li>)}
+                {items.map((item) => <li key={item.id}>{item.title}: {item.content}</li>)}
             </ul>
         </div>
     );

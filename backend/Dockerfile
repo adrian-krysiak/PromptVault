@@ -4,6 +4,10 @@ WORKDIR /app
 
 RUN apt-get update && apt-get install -y libpq-dev gcc
 
-RUN pip install django djangorestframework psycopg2-binary
+COPY ./requirements.txt ./requirements.txt
 
-CMD ["sh", "-c", "echo 'Backend service is running...' && sleep infinity"]
+RUN pip install -r ./requirements.txt
+
+COPY . .
+
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8081"]
