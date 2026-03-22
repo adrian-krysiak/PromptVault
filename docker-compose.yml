@@ -2,11 +2,12 @@ services:
   db:
     image: postgres:18-alpine
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/18/docker
     environment:
       - POSTGRES_DB=promptvault_db
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+      - PGDATA=/var/lib/postgresql/18/docker
     ports:
       - "5432:5432"
     healthcheck:

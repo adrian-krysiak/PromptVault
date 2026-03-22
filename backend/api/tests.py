@@ -3,7 +3,7 @@ from rest_framework import status
 from rest_framework.test import APITestCase
 
 from .models import Prompt
-from .serializers import PromptSerializer
+from .serializers import PromptReadSerializer, PromptWriteSerializer
 from .services import create_prompt, deactivate_prompt
 
 
@@ -164,8 +164,9 @@ class PromptModelAndSerializerTests(TestCase):
         self.assertEqual(active_records.count(), 1)
         self.assertEqual(active_records.first().id, active_prompt.id)
 
-    def test_serializer_treats_id_and_timestamps_as_read_only(self):
-        serializer = PromptSerializer(
+    def test_write_serializer_ignores_read_only_fields(self):
+        """Test that PromptWriteSerializer only accepts title and content."""
+        serializer = PromptWriteSerializer(
             data={
                 "id": 999,
                 "title": "Serializer title",
@@ -179,4 +180,17 @@ class PromptModelAndSerializerTests(TestCase):
         self.assertTrue(serializer.is_valid(), serializer.errors)
         prompt = serializer.save()
 
+        # Verify that the extraneous fields were ignored
         self.assertNotEqual(prompt.id, 999)
+        self.assertTrue(prompt.is_active)  # Default value
+
+    def test_read_serializer_includes_all_fields(self):
+        """Test that PromptReadSerializer includes id and timestamps as read-only."""
+        prompt = Prompt.objects.create(title="Test", content="Content")
+        serializer = PromptReadSerializer(prompt)
+
+        self.assertIn("id", serializer.data)
+        self.assertIn("created_at", serializer.data)
+        self.assertIn("updated_at", serializer.data)
+        self.assertEqual(serializer.data["title"], "Test")
+        self.assertEqual(serializer.data["content"], "Content")

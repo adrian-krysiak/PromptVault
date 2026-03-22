@@ -20,6 +20,7 @@ Ten projekt został zaplanowany z myślą o usługach PaaS (Platform as a Servic
 * [x] **Artefakt 2:** Środowisko wielokontenerowe uruchomione lokalnie (Docker Compose).
 * [x] **Artefakt 3:** Utworzono Frontend w podstawowej wersji
 * [x] **Artefakt 4:** Utworzono Backend w podstawowej wersji
+* [x] **Artefakt 5:** Przygotowano aplikację pod chmurę
 
 
 ## 🚀 Architektura Produkcyjna
