@@ -21,6 +21,7 @@ Ten projekt został zaplanowany z myślą o usługach PaaS (Platform as a Servic
 * [x] **Artefakt 3:** Utworzono Frontend w podstawowej wersji
 * [x] **Artefakt 4:** Utworzono Backend w podstawowej wersji
 * [x] **Artefakt 5:** Przygotowano aplikację pod chmurę
+* [x] **Artefakt 6:** Wdrożono aplikację w Azure
 
 
 ## 🚀 Architektura Produkcyjna
@@ -43,6 +44,15 @@ Aplikacja została przygotowana z myślą o wdrożeniu produkcyjnym:
 - ✅ **Django** - REST API z walidacją błędów
 - ✅ **React** - SPA z szczegółową obsługą błędów HTTP
 - ✅ **PostgreSQL** - Relacyjna baza danych
+
+## Adresy Wdrozenia Azure
+
+Aplikacja jest wdrożona w Azure i dostępna pod poniższymi adresami:
+
+- Frontend (Static Website / Blob): `https://frontend0promptvault.z1.web.core.windows.net/`
+- Backend (Web App): `https://web-app-prompt-vault-c0d7b0hfaqb7d2d7.germanywestcentral-01.azurewebsites.net/`
+- Endpoint API promptow: `https://web-app-prompt-vault-c0d7b0hfaqb7d2d7.germanywestcentral-01.azurewebsites.net/api/prompts/`
+- Panel admina: `https://web-app-prompt-vault-c0d7b0hfaqb7d2d7.germanywestcentral-01.azurewebsites.net/admin/`
 
 ## Quick Start (Docker Compose)
 
